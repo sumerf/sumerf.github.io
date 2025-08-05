@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>凉城の个人简介</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c 0%, #2a5298 50%, #3a7bd5 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* 背景装饰元素 */
+        .bg-deco {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+        }
+        
+        .deco-1 {
+            top: 5%;
+            left: 5%;
+            font-size: 12rem;
+            color: #5ab9ff;
+            transform: rotate(-15deg);
+        }
+        
+        .deco-2 {
+            bottom: 10%;
+            right: 8%;
+            font-size: 10rem;
+            color: #4a9eff;
+            transform: rotate(25deg);
+        }
+        
+        .deco-3 {
+            top: 15%;
+            right: 15%;
+            font-size: 8rem;
+            color: #3d85ff;
+            transform: rotate(10deg);
+        }
+        
+        /* 雪花效果 */
+        .snowflakes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .snowflake {
+            position: absolute;
+            color: #a2d5ff;
+            font-size: 1.2rem;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+        
+        .container {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            border: 6px solid #4a9eff;
+            z-index: 10;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* 飘带装饰 */
+        .ribbon {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 180px;
+            height: 180px;
+            overflow: hidden;
+            z-index: 15;
+        }
+        
+        .ribbon span {
+            position: absolute;
+            top: 35px;
+            right: -35px;
+            width: 240px;
+            padding: 12px 0;
+            background: linear-gradient(45deg, #3d85ff 0%, #5ab9ff 100%);
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            transform: rotate(45deg);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        /* 标题样式 */
+        .title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2a5298;
+            position: relative;
+            z-index: 20;
+        }
+        
+        .title h1 {
+            font-size: 3.2rem;
+            text-shadow: 3px 3px 0 #d1e8ff;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #1a2a6c, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+        
+        .title p {
+            font-size: 1.4rem;
+            color: #5ab9ff;
+            font-style: italic;
+            font-weight: 600;
+            text-shadow: 1px 1px 1px rgba(0,0,0,0.1);
+        }
+        
+        /* 内容区域 */
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            width: 100%;
+            position: relative;
+            z-index: 20;
+        }
+        
+        /* 头像区域 */
+        .avatar-section {
+            flex: 1;
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .avatar-frame {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            border: 10px solid #d1e8ff;
+            background: #fff;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(58, 123, 213, 0.3);
+            margin-bottom: 30px;
+            transition: all 0.4s ease;
+            transform-style: preserve-3d;
+        }
+        
+        .avatar-frame:hover {
+            transform: scale(1.08) rotateY(10deg);
+            box-shadow: 0 20px 40px rgba(58, 123, 213, 0.5);
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #a2d5ff, #d1e8ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 6rem;
+            color: #2a5298;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #d1e8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2a5298;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .social-links a:hover {
+            transform: translateY(-8px) scale(1.1);
+            background: #3a7bd5;
+            color: white;
+            box-shadow: 0 8px 20px rgba(58, 123, 213, 0.4);
+        }
+        
+        /* 信息区域 */
+        .info-section {
+            flex: 2;
+            min-width: 350px;
+        }
+        
+        .info-card {
+            background: #fff;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            border-left: 6px solid #3a7bd5;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(90, 185, 255, 0.1) 0%, rgba(58, 123, 213, 0.05) 100%);
+            z-index: 1;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(58, 123, 213, 0.3);
+            border-left: 6px solid #5ab9ff;
+        }
+        
+        .info-card h2 {
+            color: #1a2a6c;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .info-card h2 i {
+            background: #d1e8ff;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #2a5298;
+            font-size: 1.3rem;
+        }
+        
+        .info-card p {
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.15rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .info-card ul {
+            list-style-type: none;
+            padding: 0;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .info-card ul li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e0f0ff;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #444;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .info-card ul li:hover {
+            transform: translateX(10px);
+            color: #1a2a6c;
+        }
+        
+        .info-card ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-card ul li i {
+            color: #3a7bd5;
+            width: 28px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        
+        /* 对话框样式 */
+        .speech-bubble {
+            position: relative;
+            background: #e0f0ff;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 25px;
+            font-style: italic;
+            color: #1a2a6c;
+            border: 3px dashed #3a7bd5;
+            font-size: 1.2rem;
+            text-align: center;
+            box-shadow: inset 0 0 15px rgba(90, 185, 255, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .speech-bubble:after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 60px;
+            border-width: 15px 15px 0;
+            border-style: solid;
+            border-color: #e0f0ff transparent;
+        }
+        
+        /* 技能条样式 */
+        .skills {
+            margin-top: 20px;
+        }
+        
+        .skill {
+            margin-bottom: 15px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: #1a2a6c;
+            font-weight: 600;
+        }
+        
+        .skill-bar {
+            height: 12px;
+            background: #d1e8ff;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, #3a7bd5, #5ab9ff);
+            border-radius: 6px;
+            transition: width 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .title h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .avatar-section, .info-section {
+                min-width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .title h1 {
+                font-size: 2rem;
+            }
+            
+            .info-card {
+                padding: 25px 15px;
+            }
+            
+            .avatar-frame {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .ribbon {
+                transform: scale(0.8);
+                right: -20px;
+                top: -15px;
+            }
+        }
+        
+        /* 动画效果 */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰元素 -->
+    <div class="bg-deco deco-1">
+        <i class="fas fa-cloud"></i>
+    </div>
+    <div class="bg-deco deco-2">
+        <i class="fas fa-water"></i>
+    </div>
+    <div class="bg-deco deco-3">
+        <i class="fas fa-snowflake"></i>
+    </div>
+    
+    <!-- 雪花效果 -->
+    <div class="snowflakes"></div>
+    
+    <div class="container floating">
+        <!-- 飘带 -->
+        <div class="ribbon">
+            <span>凉城の世界</span>
+        </div>
+        
+        <div class="title">
+            <h1>凉城の个人简介</h1>
+            <p>岂能尽如人意 但求无愧我心</p>
+        </div>
+        
+        <div class="content">
+            <div class="avatar-section">
+                <div class="avatar-frame">
+                    <div class="avatar">
+                        <img src="https://q1.qlogo.cn/g?b=qq&nk=1702689231&s=640" 
+                             alt="QQ头像" 
+                             style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://qm.qq.com/q/bw0odOblle"><i class="fab fa-qq"></i></a><a
+                    <a href="https://space.bilibili.com/450683152"><i class="fab fa-bilibili"></i></a>
+                    <a href="https://t.me/lcdl6"><i class="fab fa-telegram"></i></a>
+                    <a href="https://20071008.xyz/"><i class="fa fa-brush"></i></a>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-card">
+                    <h2><i class="fas fa-user"></i> 基本信息</h2>
+                    <ul>
+                        <li><i class="fas fa-paw"></i> 昵称：凉城</li>
+                        <li><i class="fas fa-birthday-cake"></i> 生日：2007年10月8日</li>
+                        <li><i class="fas fa-map-marker-alt"></i> 来自：四川省宜宾市</li>
+                        <li><i class="fas fa-heart"></i> 特长：吃饭睡觉打豆豆</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h2><i class="fas fa-heart"></i> 兴趣爱好</h2>
+                    <ul>
+                        <li><i class="fas fa-tv"></i> 从事项目：CowPE Project</li>
+                        <li><i class="fas fa-book"></i> 阅读偏好：人文社科</li>
+                        <li><i class="fas fa-headphones"></i> 音乐风格：R&B、纯音乐</li>
+                        <li><i class="fas fa-paint-brush"></i> 艺术细胞：一坨</li>
+                    </ul>
+                    
+                    <div class="skills">
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>三次元纯度</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>内向</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill">
+                            <div class="skill-name">
+                                <span>吃货</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <h2><i class="fas fa-gamepad"></i>  常玩游戏</h2>
+                    <ul>
+                        <li><i class="fas fa-gamepad"></i> Minecraft</li>
+                        <li><i class="fas fa-gamepad"></i> 无悔华夏</li>
+                        <li><i class="fas fa-gamepad"></i> 王者荣耀</li>
+                        <li><i class="fas fa-gamepad"></i> GTA5</li>
+                    </ul>
+                </div>
+
+    <script>
+        // 创建雪花效果
+        function createSnowflakes() {
+            const snowflakes = document.querySelector('.snowflakes');
+            const snowflakeCount = 30;
+            
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.innerHTML = '❄';
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = Math.random() * 5 + 5 + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.opacity = Math.random() * 0.5 + 0.3;
+                snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+                snowflakes.appendChild(snowflake);
+            }
+        }
+        
+        // 初始化技能条动画
+        function initSkillBars() {
+            const skillLevels = document.querySelectorAll('.skill-level');
+            skillLevels.forEach(bar => {
+                // 保存原始宽度
+                const width = bar.style.width;
+                bar.style.width = '0';
+                // 延迟执行动画
+                setTimeout(() => {
+                    bar.style.width = width;
+                }, 300);
+            });
+        }
+        
+        // 添加卡片悬停效果
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.borderLeft = '6px solid #5ab9ff';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.borderLeft = '6px solid #3a7bd5';
+            });
+        });
+        
+        // 头像3D效果
+        const avatar = document.querySelector('.avatar-frame');
+        avatar.addEventListener('mousemove', (e) => {
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 25;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 25;
+            avatar.style.transform = `scale(1.08) rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+        });
+        
+        avatar.addEventListener('mouseenter', () => {
+            avatar.style.transition = 'none';
+        });
+        
+        avatar.addEventListener('mouseleave', () => {
+            avatar.style.transition = 'all 0.5s ease';
+            avatar.style.transform = 'scale(1.08) rotateY(0deg) rotateX(0deg)';
+        });
+        
+        // 页面加载完成后执行
+        window.addEventListener('load', () => {
+            createSnowflakes();
+            initSkillBars();
+        });
+    </script>
+</body>
+</html>
