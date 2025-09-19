@@ -3,6 +3,7 @@
     "subTitle":"岂能尽如人意 但求无愧我心",
     "avatarUrl":"https://pic.20071008.xyz/img/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_2025-08-11_100352_869.jpg",
     "GMEEK_VERSION":"last",
-    "startSite":"09/09/2025"
-    "script": "<script>document.addEventListener('DOMContentLoaded',function(){const hitokotoUrl='https://v1.hitokoto.cn/?c=i';const footerSelectors=['.footer-inner','footer','.site-footer','.footer'];let footerElem=null;for(const sel of footerSelectors){footerElem=document.querySelector(sel);if(footerElem)break;}if(footerElem){fetch(hitokotoUrl).then(response=>response.json()).then(data=>{const hitokotoText=data.hitokoto+' —— '+data.from;const hitokotoDiv=document.createElement('div');hitokotoDiv.style.marginBottom='8px';hitokotoDiv.style.fontStyle='italic';hitokotoDiv.textContent=hitokotoText;footerElem.insertBefore(hitokotoDiv,footerElem.firstChild);}).catch(error=>{console.error('获取一言失败:',error);});}});</script>"
+    "startSite":"09/09/2025",
+    "bottomText":"Copyright © 2025 凉城的博客 • Powered by Gmeek",
+    "indexScript":"<script>document.addEventListener('DOMContentLoaded', function() { var hitokotoUrl = 'https://v1.hitokoto.cn/?c=i'; var footerSelectors = ['.footer-inner', 'footer', '.site-footer', '.footer']; var footerElem = null; for (var i = 0; i < footerSelectors.length; i++) { var elem = document.querySelector(footerSelectors[i]); if (elem) { footerElem = elem; break; } } if (footerElem) { fetch(hitokotoUrl).then(function(response) { return response.json(); }).then(function(data) { var hitokotoText = data.hitokoto + ' —— ' + data.from; var hitokotoDiv = document.createElement('div'); hitokotoDiv.style.marginBottom = '8px'; hitokotoDiv.style.fontStyle = 'italic'; hitokotoDiv.textContent = hitokotoText; footerElem.insertBefore(hitokotoDiv, footerElem.firstChild); }).catch(function(error) { console.error('获取一言失败:', error); }); } });</script>"
 }
